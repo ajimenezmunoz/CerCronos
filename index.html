@@ -27,7 +27,7 @@
     border-style: solid;
     border-color: #ffffff;
     margin-bottom: 200px;  
-    background-color: #e8eaf6;
+    background-color: #dee6ed;
     color: #000;
   }
    
@@ -70,7 +70,7 @@
   }
 
   .timerButton{
-    background-color: #6745c2;
+    background-color: #7b9bb7;
     color: white;
     border: solid 0.5px white;
     padding: 10px 10px 10px 10px;
@@ -90,7 +90,7 @@
   
     .timerButtonSmall{
     background-color: #6745c2;
-    color: white;
+    color: #3f5b73;
     border: solid 0.5px white;
     padding: 10px 10px 10px 10px;
     text-align: center;
@@ -103,57 +103,194 @@
 
   .timerButtonSmall:hover {
     background-color: white;
-    color: #6745c2;
-    border: solid 0.5px #6745c2;
+    color: #7b9bb7;
+    border: solid 0.5px #7b9bb7;
   }
+  
+  /* ==== Ventana modal de tabla ==== */
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+}
+
+.modal-content {
+  background: white;
+  margin: 8% auto;
+  padding: 20px;
+  width: 80%;
+  max-width: 1100px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.closeBtn {
+  float: right;
+  font-size: 40px;
+  cursor: pointer;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  font-size: 32px;
+}
+
+table td {
+  border: 1px solid #444;
+  padding: 10px;
+}
+  
   </style>
-  <script type="text/javascript" defer>var time_list = [
+  <script type="text/javascript" defer>
+  var inter = location.search.split('inter=')[1]
+  if (inter == "corta" || inter == null || inter == undefined) {
+  var time_list = [
     // Temporizadores A2
-	{ id: "timer-1", timername: "Preparación mon&oacute;logo A2", time: 120, status: "stop", original: 120 },
-	{ id: "timer-2", timername: "Mon&oacute;logo A2", time: 120, status: "stop", original: 120 },
-	{ id: "timer-3", timername: "Preparación Interacci&oacute;n A2", time: 60, status: "stop", original: 60 },
-	{ id: "timer-4", timername: "Interacci&oacute;n parejas A2", time: 240, status: "stop", original: 240 },
-	{ id: "timer-5", timername: "Interacci&oacute;n tr&iacute;o A2", time: 360, status: "stop", original: 360 },
-	{ id: "timer-6", timername: "Preparaci&oacute;n mediaci&oacute;n A2", time: 120, status: "stop", original: 120 },
-	{ id: "timer-7", timername: "Mediaci&oacute;n A2", time: 90, status: "stop", original: 90 },
+	{ id: "timer-1", timername: "Nivel A2 - Preparación mon&oacute;logo", time: 120, status: "stop", original: 120 },
+	{ id: "timer-2", timername: "Nivel A2 - Mon&oacute;logo", time: 120, status: "stop", original: 120 },
+	{ id: "timer-3", timername: "Nivel A2 - Preparación Interacci&oacute;n", time: 60, status: "stop", original: 60 },
+	{ id: "timer-4", timername: "Nivel A2 - Interacci&oacute;n por parejas", time: 180, status: "stop", original: 180 },
+	{ id: "timer-5", timername: "Nivel A2 - Interacci&oacute;n tr&iacute;o", time: 300, status: "stop", original: 300 },
+	{ id: "timer-6", timername: "Nivel A2 - Preparaci&oacute;n Mediaci&oacute;n (tareas 1 y 2)", time: 120, status: "stop", original: 120 },
+	{ id: "timer-7", timername: "Nivel A2 - Mediaci&oacute;n (tareas 1 y 2)", time: 90, status: "stop", original: 90 },
 	// Temporizadores B1
-	{ id: "timer-8", timername: "Preparación mon&oacute;logo B1<a id='B1'></a>", time: 120, status: "stop", original: 120 },
-	{ id: "timer-9", timername: "Mon&oacute;logo B1", time: 150, status: "stop", original: 150 },
-	{ id: "timer-10", timername: "Preparación Interacci&oacute;n B1", time: 60, status: "stop", original: 60 },
-	{ id: "timer-11", timername: "Interacci&oacute;n parejas 	B1", time: 240, status: "stop", original: 240 },
-	{ id: "timer-12", timername: "Interacci&oacute;n tr&iacute;o B1", time: 360, status: "stop", original: 360 },
-	{ id: "timer-13", timername: "Preparaci&oacute;n mediaci&oacute;n B1", time: 180, status: "stop", original: 180 },
-	{ id: "timer-14", timername: "Mediaci&oacute;n B1", time: 120, status: "stop", original: 120 },
+	{ id: "timer-8", timername: "Nivel B1 - Preparación mon&oacute;logo<a id='B1'></a>", time: 120, status: "stop", original: 120 },
+	{ id: "timer-9", timername: "Nivel B1 - Mon&oacute;logo", time: 150, status: "stop", original: 150 },
+	{ id: "timer-10", timername: "Nivel B1 - Preparación Interacci&oacute;n", time: 60, status: "stop", original: 60 },
+	{ id: "timer-11", timername: "Nivel B1 - Interacci&oacute;n por parejas", time: 180, status: "stop", original: 180 },
+	{ id: "timer-12", timername: "Nivel B1 - Interacci&oacute;n tr&iacute;o", time: 300, status: "stop", original: 300 },
+	{ id: "timer-13", timername: "Nivel B1 - Preparaci&oacute;n Mediaci&oacute;n (tareas 1 y 2)", time: 180, status: "stop", original: 180 },
+	{ id: "timer-14", timername: "Nivel B1 - Mediaci&oacute;n (tareas 1 y 2)", time: 120, status: "stop", original: 120 },
 	// Temporizadores B2
-	{ id: "timer-15", timername: "Preparación mon&oacute;logo B2<a id='B2'></a>", time: 120, status: "stop", original: 120 },
-	{ id: "timer-16", timername: "Mon&oacute;logo B2", time: 180, status: "stop", original: 180 },
-	{ id: "timer-17", timername: "Preparación Interacci&oacute;n B2", time: 120, status: "stop", original: 120 },
-	{ id: "timer-18", timername: "Interacci&oacute;n parejas B2", time: 360, status: "stop", original: 360 },
-	{ id: "timer-19", timername: "Interacci&oacute;n tr&iacute;o B2", time: 480, status: "stop", original: 480 },
-	{ id: "timer-20", timername: "Preparaci&oacute;n mediaci&oacute;n B2", time: 240, status: "stop", original: 240 },
-	{ id: "timer-21", timername: "Mediaci&oacute;n B2", time: 180, status: "stop", original: 180 },
+	{ id: "timer-15", timername: "Nivel B2 - Preparación mon&oacute;logo<a id='B2'></a>", time: 120, status: "stop", original: 120 },
+	{ id: "timer-16", timername: "Nivel B2 - Mon&oacute;logo", time: 180, status: "stop", original: 180 },
+	{ id: "timer-17", timername: "Nivel B2 - Preparación Interacci&oacute;n", time: 120, status: "stop", original: 120 },
+	{ id: "timer-18", timername: "Nivel B2 - Interacci&oacute;n por parejas", time: 300, status: "stop", original: 300 },
+	{ id: "timer-19", timername: "Nivel B2 - Interacci&oacute;n tr&iacute;o", time: 420, status: "stop", original: 420 },
+	{ id: "timer-20", timername: "Nivel B2 - Preparaci&oacute;n Mediaci&oacute;n (tareas 1 y 2)", time: 240, status: "stop", original: 240 },
+	{ id: "timer-21", timername: "Nivel B2 - Mediaci&oacute;n (tareas 1 y 2)", time: 180, status: "stop", original: 180 },
 	// Temporizadores C1
-	{ id: "timer-22", timername: "Preparación mon&oacute;logo C1<a id='C1'></a>", time: 120, status: "stop", original: 120 },
-	{ id: "timer-23", timername: "Mon&oacute;logo C1", time: 180, status: "stop", original: 180 },
-	{ id: "timer-24", timername: "Preparación Interacci&oacute;n C1", time: 120, status: "stop", original: 120 },
-	{ id: "timer-25", timername: "Interacci&oacute;n parejas C1", time: 360, status: "stop", original: 360 },
-	{ id: "timer-26", timername: "Interacci&oacute;n tr&iacute;o C1", time: 480, status: "stop", original: 480 },
-	{ id: "timer-27", timername: "Preparaci&oacute;n mediaci&oacute;n C1", time: 240, status: "stop", original: 240 },
-	{ id: "timer-28", timername: "Mediaci&oacute;n C1", time: 210, status: "stop", original: 210 },
+	{ id: "timer-22", timername: "Nivel C1 - Preparación mon&oacute;logo<a id='C1'></a>", time: 120, status: "stop", original: 120 },
+	{ id: "timer-23", timername: "Nivel C1 - Mon&oacute;logo", time: 180, status: "stop", original: 180 },
+	{ id: "timer-24", timername: "Nivel C1 - Preparación Interacci&oacute;n", time: 120, status: "stop", original: 120 },
+	{ id: "timer-25", timername: "Nivel C1 - Interacci&oacute;n por parejas", time: 300, status: "stop", original: 300 },
+	{ id: "timer-26", timername: "Nivel C1 - Interacci&oacute;n tr&iacute;o", time: 420, status: "stop", original: 420 },
+	{ id: "timer-27", timername: "Nivel C1 - Preparaci&oacute;n Mediaci&oacute;n (tareas 1 y 2)", time: 240, status: "stop", original: 240 },
+	{ id: "timer-28", timername: "Nivel C1 - Mediaci&oacute;n (tareas 1 y 2)", time: 210, status: "stop", original: 210 },
 	// Temporizadores C2
-	{ id: "timer-29", timername: "Preparación mon&oacute;logo C2<a id='C2'></a>", time: 120, status: "stop", original: 120 },
-	{ id: "timer-30", timername: "Mon&oacute;logo C2", time: 180, status: "stop", original: 180 },
-	{ id: "timer-31", timername: "Preparación Interacci&oacute;n C2", time: 120, status: "stop", original: 120 },
-	{ id: "timer-32", timername: "Interacci&oacute;n parejas C2", time: 360, status: "stop", original: 360 },
-	{ id: "timer-33", timername: "Interacci&oacute;n tr&iacute;o C2", time: 480, status: "stop", original: 480 },
-	{ id: "timer-34", timername: "Preparaci&oacute;n mediaci&oacute;n C2", time: 270, status: "stop", original: 270 },
-	{ id: "timer-35", timername: "Mediaci&oacute;n C2", time: 240, status: "stop", original: 240 }
+	{ id: "timer-29", timername: "Nivel C2 - Preparación mon&oacute;logo<a id='C2'></a>", time: 120, status: "stop", original: 120 },
+	{ id: "timer-30", timername: "Nivel C2 - Mon&oacute;logo", time: 180, status: "stop", original: 180 },
+	{ id: "timer-31", timername: "Nivel C2 - Preparación Interacci&oacute;n", time: 120, status: "stop", original: 120 },
+	{ id: "timer-32", timername: "Nivel C2 - Interacci&oacute;n por parejas", time: 300, status: "stop", original: 300 },
+	{ id: "timer-33", timername: "Nivel C2 - Interacci&oacute;n tr&iacute;o", time: 420, status: "stop", original: 420 },
+	{ id: "timer-34", timername: "Nivel C2 - Preparaci&oacute;n Mediaci&oacute;n (tareas 1 y 2)", time: 270, status: "stop", original: 270 },
+	{ id: "timer-35", timername: "Nivel C2 - Mediaci&oacute;n (tareas 1 y 2)", time: 240, status: "stop", original: 240 },
+	{ id: "timer-36", timername: "Nivel A2<br>Comprensi&oacute;n de Textos Escritos", time: 3000, status: "stop", original: 3000 },
+	{ id: "timer-37", timername: "Nivel A2<br>Producci&oacute;n y Coproducci&oacute;n de Textos Escritos", time: 3600, status: "stop", original: 3600 },
+	{ id: "timer-38", timername: "Nivel B1<br>Comprensi&oacute;n de Textos Escritos", time: 3000, status: "stop", original: 3000 },
+	{ id: "timer-39", timername: "Nivel B1<br>Producci&oacute;n y Coproducci&oacute;n de Textos Escritos", time: 4500, status: "stop", original: 4500 },
+	{ id: "timer-40", timername: "Nivel B2<br>Comprensi&oacute;n de Textos Escritos", time: 3300, status: "stop", original: 3300 },
+	{ id: "timer-41", timername: "Nivel B2<br>Producci&oacute;n y Coproducci&oacute;n de Textos Escritos", time: 5400, status: "stop", original: 5400 },
+	{ id: "timer-42", timername: "Nivel C1<br>Comprensi&oacute;n de Textos Escritos", time: 3900, status: "stop", original: 3900 },
+	{ id: "timer-43", timername: "Nivel C1<br>Producci&oacute;n y Coproducci&oacute;n de Textos Escritos", time: 6000, status: "stop", original: 6000 },
+	{ id: "timer-44", timername: "Nivel C2<br>Comprensi&oacute;n de Textos Escritos", time: 4200, status: "stop", original: 4200 },
+	{ id: "timer-45", timername: "Nivel C2<br>Producci&oacute;n y Coproducci&oacute;n de Textos Escritos", time: 6300, status: "stop", original: 6300 }
 	];
+		
+}
+
+if (inter == "larga") {
+var time_list = [
+    // Temporizadores A2
+	{ id: "timer-1", timername: "Nivel A2 - Preparación mon&oacute;logo", time: 120, status: "stop", original: 120 },
+	{ id: "timer-2", timername: "Nivel A2 - Mon&oacute;logo", time: 120, status: "stop", original: 120 },
+	{ id: "timer-3", timername: "Nivel A2 - Preparación Interacci&oacute;n", time: 60, status: "stop", original: 60 },
+	{ id: "timer-4", timername: "Nivel A2 - Interacci&oacute;n por parejas", time: 240, status: "stop", original: 240 },
+	{ id: "timer-5", timername: "Nivel A2 - Interacci&oacute;n tr&iacute;o", time: 360, status: "stop", original: 360 },
+	{ id: "timer-6", timername: "Nivel A2 - Preparaci&oacute;n Mediaci&oacute;n (tareas 1 y 2)", time: 120, status: "stop", original: 120 },
+	{ id: "timer-7", timername: "Nivel A2 - Mediaci&oacute;n (tareas 1 y 2)", time: 90, status: "stop", original: 90 },
+	// Temporizadores B1
+	{ id: "timer-8", timername: "Nivel B1 - Preparación mon&oacute;logo<a id='B1'></a>", time: 120, status: "stop", original: 120 },
+	{ id: "timer-9", timername: "Nivel B1 - Mon&oacute;logo", time: 150, status: "stop", original: 150 },
+	{ id: "timer-10", timername: "Nivel B1 - Preparación Interacci&oacute;n", time: 60, status: "stop", original: 60 },
+	{ id: "timer-11", timername: "Nivel B1 - Interacci&oacute;n por parejas", time: 240, status: "stop", original: 240 },
+	{ id: "timer-12", timername: "Nivel B1 - Interacci&oacute;n tr&iacute;o", time: 360, status: "stop", original: 360 },
+	{ id: "timer-13", timername: "Nivel B1 - Preparaci&oacute;n Mediaci&oacute;n (tareas 1 y 2)", time: 180, status: "stop", original: 180 },
+	{ id: "timer-14", timername: "Nivel B1 - Mediaci&oacute;n (tareas 1 y 2)", time: 120, status: "stop", original: 120 },
+	// Temporizadores B2
+	{ id: "timer-15", timername: "Nivel B2 - Preparación mon&oacute;logo<a id='B2'></a>", time: 120, status: "stop", original: 120 },
+	{ id: "timer-16", timername: "Nivel B2 - Mon&oacute;logo", time: 180, status: "stop", original: 180 },
+	{ id: "timer-17", timername: "Nivel B2 - Preparación Interacci&oacute;n", time: 120, status: "stop", original: 120 },
+	{ id: "timer-18", timername: "Nivel B2 - Interacci&oacute;n por parejas", time: 360, status: "stop", original: 360 },
+	{ id: "timer-19", timername: "Nivel B2 - Interacci&oacute;n tr&iacute;o", time: 480, status: "stop", original: 480 },
+	{ id: "timer-20", timername: "Nivel B2 - Preparaci&oacute;n Mediaci&oacute;n (tareas 1 y 2)", time: 240, status: "stop", original: 240 },
+	{ id: "timer-21", timername: "Nivel B2 - Mediaci&oacute;n (tareas 1 y 2)", time: 180, status: "stop", original: 180 },
+	// Temporizadores C1
+	{ id: "timer-22", timername: "Nivel C1 - Preparación mon&oacute;logo<a id='C1'></a>", time: 120, status: "stop", original: 120 },
+	{ id: "timer-23", timername: "Nivel C1 - Mon&oacute;logo", time: 180, status: "stop", original: 180 },
+	{ id: "timer-24", timername: "Nivel C1 - Preparación Interacci&oacute;n", time: 120, status: "stop", original: 120 },
+	{ id: "timer-25", timername: "Nivel C1 - Interacci&oacute;n por parejas", time: 360, status: "stop", original: 360 },
+	{ id: "timer-26", timername: "Nivel C1 - Interacci&oacute;n tr&iacute;o", time: 480, status: "stop", original: 480 },
+	{ id: "timer-27", timername: "Nivel C1 - Preparaci&oacute;n Mediaci&oacute;n (tareas 1 y 2)", time: 240, status: "stop", original: 240 },
+	{ id: "timer-28", timername: "Nivel C1 - Mediaci&oacute;n (tareas 1 y 2)", time: 210, status: "stop", original: 210 },
+	// Temporizadores C2
+	{ id: "timer-29", timername: "Nivel C2 - Preparación mon&oacute;logo<a id='C2'></a>", time: 120, status: "stop", original: 120 },
+	{ id: "timer-30", timername: "Nivel C2 - Mon&oacute;logo", time: 180, status: "stop", original: 180 },
+	{ id: "timer-31", timername: "Nivel C2 - Preparación Interacci&oacute;n", time: 120, status: "stop", original: 120 },
+	{ id: "timer-32", timername: "Nivel C2 - Interacci&oacute;n por parejas", time: 360, status: "stop", original: 360 },
+	{ id: "timer-33", timername: "Nivel C2 - Interacci&oacute;n tr&iacute;o", time: 480, status: "stop", original: 480 },
+	{ id: "timer-34", timername: "Nivel C2 - Preparaci&oacute;n Mediaci&oacute;n (tareas 1 y 2)", time: 270, status: "stop", original: 270 },
+	{ id: "timer-35", timername: "Nivel C2 - Mediaci&oacute;n (tareas 1 y 2)", time: 240, status: "stop", original: 240 },
+	{ id: "timer-36", timername: "Nivel A2<br>Comprensi&oacute;n de Textos Escritos", time: 3000, status: "stop", original: 3000 },
+	{ id: "timer-37", timername: "Nivel A2<br>Producci&oacute;n y Coproducci&oacute;n de Textos Escritos", time: 3600, status: "stop", original: 3600 },
+	{ id: "timer-38", timername: "Nivel B1<br>Comprensi&oacute;n de Textos Escritos", time: 3000, status: "stop", original: 3000 },
+	{ id: "timer-39", timername: "Nivel B1<br>Producci&oacute;n y Coproducci&oacute;n de Textos Escritos", time: 4500, status: "stop", original: 4500 },
+	{ id: "timer-40", timername: "Nivel B2<br>Comprensi&oacute;n de Textos Escritos", time: 3300, status: "stop", original: 3300 },
+	{ id: "timer-41", timername: "Nivel B2<br>Producci&oacute;n y Coproducci&oacute;n de Textos Escritos", time: 5400, status: "stop", original: 5400 },
+	{ id: "timer-42", timername: "Nivel C1<br>Comprensi&oacute;n de Textos Escritos", time: 3900, status: "stop", original: 3900 },
+	{ id: "timer-43", timername: "Nivel C1<br>Producci&oacute;n y Coproducci&oacute;n de Textos Escritos", time: 6000, status: "stop", original: 6000 },
+	{ id: "timer-44", timername: "Nivel C2<br>Comprensi&oacute;n de Textos Escritos", time: 4200, status: "stop", original: 4200 },
+	{ id: "timer-45", timername: "Nivel C2<br>Producci&oacute;n y Coproducci&oacute;n de Textos Escritos", time: 6300, status: "stop", original: 6300 }
+	];
+}
 
 function loadSite() {
     let text = "";
     for (var i = 0; i < time_list.length; i++) {
-        text += `
+		if (i <= 6) {
+			var l = "A2";
+			var tl = 0;
+		}
+		if (i >= 7 && i <= 13) {
+			var l = "B1";
+			var tl = 1;
+		}
+		if (i >= 14 && i <= 20) {
+			var l = "B2";
+			var tl = 2;
+		}
+		if (i >= 21 && i <= 27) {
+			var l = "C1";
+			var tl = 3;
+		}
+		if (i >= 28 && i <= 34) {
+			var l = "C2";
+			var tl = 4;
+		}
+		if (i >= 35) {
+			var l = "sin definir";
+			var tl = 5;
+		}
+        if (i <= 34) {
+		text += `
       <div class="timer">
         <div class="innerContainer">
           <h4>${time_list[i].timername}</h4>
@@ -165,16 +302,43 @@ function loadSite() {
           <button class="timerButton" onclick="startButton(${i})" id="start-${i + 1}">Empezar</button>
           <button class="timerButton" onclick="pauseButton(${i})" id="pause-${i + 1}">Pausa</button>
           <button class="timerButton" onclick="stopButton(${i})" id="reset-${i + 1}">Resetear</button><br><br>
-		  <button class="timerButtonSmall" onclick="document.location='#arriba'" id="navegar-${i + 1}">A2</button>
-		  <button class="timerButtonSmall" onclick="document.location='#B1'" id="navegar-${i + 1}">B1</button>
-		  <button class="timerButtonSmall" onclick="document.location='#B2'" id="navegar-${i + 1}">B2</button>
-		  <button class="timerButtonSmall" onclick="document.location='#C1'" id="navegar-${i + 1}">C1</button>
-		  <button class="timerButtonSmall" onclick="document.location='#C2'" id="navegar-${i + 1}">C2</button>
+		  <button class="timerButton" style="width:400px ;" onclick="showTable(${tl})">Tabla tiempos ${l}</button><br><br>
+		  <button class="timerButtonSmall" style="background-color: #BCD5ED ;" onclick="document.location='#arriba'" id="navegar-${i + 1}">A2</button>
+		  <button class="timerButtonSmall" style="background-color: #F7C9AC ;" onclick="document.location='#B1'" id="navegar-${i + 1}">B1</button>
+		  <button class="timerButtonSmall" style="background-color: #C5DFB3 ;" onclick="document.location='#B2'" id="navegar-${i + 1}">B2</button>
+		  <button class="timerButtonSmall" style="background-color: #CEC3DB ;" onclick="document.location='#C1'" id="navegar-${i + 1}">C1</button>
+		  <button class="timerButtonSmall" style="background-color: #DAEEF3 ;" onclick="document.location='#C2'" id="navegar-${i + 1}">C2</button>
 		  </div>
       </div>
       `
+	  }
+	  if (i >= 35) {
+	  text += `
+      <div class="timer">
+        <div class="innerContainer">
+          <h4>${time_list[i].timername}</h4>
+          <div class="timer-display">
+            <span id="timer-${i + 1}"></span>
+		  </div>
+        </div>
+        <div class="timer-controls"><br><br><br><br><br>
+          <button class="timerButton" onclick="startButton(${i})" id="start-${i + 1}">Empezar</button>
+          <button class="timerButton" onclick="pauseButton(${i})" id="pause-${i + 1}">Pausa</button>
+          <button class="timerButton" onclick="stopButton(${i})" id="reset-${i + 1}">Resetear</button><br><br>
+		  <button class="timerButtonSmall" style="background-color: #BCD5ED ;" onclick="document.location='#arriba'" id="navegar-${i + 1}">A2</button>
+		  <button class="timerButtonSmall" style="background-color: #F7C9AC ;" onclick="document.location='#B1'" id="navegar-${i + 1}">B1</button>
+		  <button class="timerButtonSmall" style="background-color: #C5DFB3 ;" onclick="document.location='#B2'" id="navegar-${i + 1}">B2</button>
+		  <button class="timerButtonSmall" style="background-color: #CEC3DB ;" onclick="document.location='#C1'" id="navegar-${i + 1}">C1</button>
+		  <button class="timerButtonSmall" style="background-color: #DAEEF3 ;" onclick="document.location='#C2'" id="navegar-${i + 1}">C2</button>
+		  </div>
+      </div>
+      `
+	  }
     }
     document.getElementById('timerContainer').innerHTML = text;
+	if (inter == "larga") {
+	document.getElementById('cambio').innerHTML = "Ir a interacci&oacute;n corta";
+	}
 }
 
 function startButton(i) {
@@ -191,7 +355,7 @@ function stopButton(i) {
 }
 
 function newTimer(time) {
-    time_list.push({ id: "timer-" + (time_list.length + 1), timername: "Temporizador - " + (time_list.length + 1), time: time, status: "stop", original: time });
+    time_list.push({ id: "timer-" + (time_list.length + 1), timername: "Crono personalizado - " + (time_list.length + 1), time: time, status: "stop", original: time });
     loadSite();
 }
 
@@ -226,26 +390,57 @@ let timer_main = setInterval(function () {
 
     }
 }, 1000);
+
+// Cada cronómetro puede tener su propia tabla
+let timerTables = ["<h1><table><tbody><id='tableTitle'>Tabla Tiempos Nivel A2<tr style='background-color:#BCD5ED;'><td>Actividad</td><td>Preparaci&oacute;n</td><td>Tiempo de Habla</td></tr><tr><td style='background-color:tan;'>Mon&oacute;logo</td><td>2 minutos</td><td>2 minutos</td></tr><tr><td style='background-color:tan;'>Interacci&oacute;n</td><td>1 minuto</td><td>3-4 minutos por pareja<br>5-6 minutos por tr&iacute;o</td></tr><tr><td style='background-color:wheat;'>Mediaci&oacute;n<br>(tareas 1 y 2)</td><td>2 minutos</td><td>1 minuto 30 segundos <font style='color:red';>m&aacute;ximo</font></td></tr></tbody></table></h1>", "<h1><table><tbody><id='tableTitle'>Tabla Tiempos Nivel B1<tr style='background-color:#F7C9AC;'><td>Actividad</td><td>Preparaci&oacute;n</td><td>Tiempo de Habla</td></tr><tr><td style='background-color:tan;'>Mon&oacute;logo</td><td>2 minutos</td><td>2 minutos 30 segundos</td></tr><tr><td style='background-color:tan;'>Interacci&oacute;n</td><td>1 minuto</td><td>3-4 minutos por pareja<br>5-6 minutos por tr&iacute;o</td></tr><tr><td style='background-color:wheat;'>Mediaci&oacute;n<br>(tareas 1 y 2)</td><td>3 minutos</td><td>2 minutos <font style='color:red';>m&aacute;ximo</font></td></tr></tbody></table></h1>", "<h1><table><tbody><id='tableTitle'>Tabla Tiempos Nivel B2<tr style='background-color:#C5DFB3;'><td>Actividad</td><td>Preparaci&oacute;n</td><td>Tiempo de Habla</td></tr><tr><td style='background-color:tan;'>Mon&oacute;logo</td><td>2 minutos</td><td>3 minutos</td></tr><tr><td style='background-color:tan;'>Interacci&oacute;n</td><td>2 minutos</td><td>5-6 minutos por pareja<br>7-8 minutos por tr&iacute;o</td></tr><tr><td style='background-color:wheat;'>Mediaci&oacute;n<br>(tareas 1 y 2)</td><td>4 minutos</td><td>3 minutos <font style='color:red';>m&aacute;ximo</font></td></tr></tbody></table></h1>", "<h1><table><tbody><id='tableTitle'>Tabla Tiempos Nivel C1<tr style='background-color:#CEC3DB;'><td>Actividad</td><td>Preparaci&oacute;n</td><td>Tiempo de Habla</td></tr><tr><td style='background-color:tan;'>Mon&oacute;logo</td><td>2 minutos</td><td>3 minutos</td></tr><tr><td style='background-color:tan;'>Interacci&oacute;n</td><td>2 minutos</td><td>5-6 minutos por pareja<br>7-8 minutos por tr&iacute;o</td></tr><tr><td style='background-color:wheat;'>Mediaci&oacute;n<br>(tareas 1 y 2)</td><td>4 minutos</td><td>3 minutos 30 segundos <font style='color:red';>m&aacute;ximo</font></td></tr></tbody></table></h1>", "<h1><table><tbody><id='tableTitle'>Tabla Tiempos Nivel C2<tr style='background-color:#DAEEF3;'><td>Actividad</td><td>Preparaci&oacute;n</td><td>Tiempo de Habla</td></tr><tr><td style='background-color:tan;'>Mon&oacute;logo</td><td>2 minutos</td><td>3 minutos</td></tr><tr><td style='background-color:tan;'>Interacci&oacute;n</td><td>2 minutos</td><td>5-6 minutos por pareja<br>7-8 minutos por tr&iacute;o</td></tr><tr><td style='background-color:wheat;'>Mediaci&oacute;n<br>(tareas 1 y 2)</td><td>4 minutos 30 segundos</td><td>4 minutos <font style='color:red';>m&aacute;ximo</font></td></tr></tbody></table></h1>", ""];
+
+// Mostrar la tabla para un cronómetro concreto
+function showTable(i) {
+    document.getElementById("tableContainer").innerHTML = timerTables[i];
+    document.getElementById("tableModal").style.display = "block";
+}
+
+// Cerrar modal
+function closeTable() {
+    document.getElementById("tableModal").style.display = "none";
+}
+
+function cambiar() {
+if (inter == "larga") {
+    window.open('index.html?inter=corta','_self');
+	}
+if (inter == "corta" || inter == null || inter == undefined) {
+	window.open('index.html?inter=larga','_self');
+}
+}
+
 </script>
 </head>
 <body onload="loadSite()">
   <h1>Cron&oacute;metros certificaci&oacute;n idiomas<a id="arriba"></a></h1>
-  <h2>Convocatoria Asturias 24-25</h2>
+  <h2><b>Convocatoria Asturias 2026 (pendiente gu&iacute;a del aspirante)</b></h2>
   <div id="controls">
     <h2>Enlaces</h2>
-    <button class="timerButtonSmall" onclick="document.location='#arriba'" id="navegar-${i + 1}">A2</button>
-	<button class="timerButtonSmall" onclick="document.location='#B1'" id="navegar-${i + 1}">B1</button>
-	<button class="timerButtonSmall" onclick="document.location='#B2'" id="navegar-${i + 1}">B2</button>
-	<button class="timerButtonSmall" onclick="document.location='#C1'" id="navegar-${i + 1}">C1</button>
-	<button class="timerButtonSmall" onclick="document.location='#C2'" id="navegar-${i + 1}">C2</button>
-    <button class="timerButton" onclick="document.location='#timer-32'" id="navegar-${i + 1}">Mis cronos</button>	
-	<button class="timerButton" style="width:250px ;" onclick="newTimer(prompt('¿Cu&aacute;ntos segundos?'))">+ Crono personalizado</button>
-	<button class="timerButton" style="width:250px ;" onclick="window.open('intcorta.html', '_self')">Ir a interacci&oacute;n corta</button>
+    <button class="timerButtonSmall" style="background-color: #BCD5ED ;" onclick="document.location='#arriba'" id="navegar-${i + 1}">A2</button>
+	<button class="timerButtonSmall" style="background-color: #F7C9AC ;" onclick="document.location='#B1'" id="navegar-${i + 1}">B1</button>
+	<button class="timerButtonSmall" style="background-color: #C5DFB3 ;" onclick="document.location='#B2'" id="navegar-${i + 1}">B2</button>
+	<button class="timerButtonSmall" style="background-color: #CEC3DB ;" onclick="document.location='#C1'" id="navegar-${i + 1}">C1</button>
+	<button class="timerButtonSmall" style="background-color: #DAEEF3 ;" onclick="document.location='#C2'" id="navegar-${i + 1}">C2</button>
+    <button class="timerButton" style="width:200px ;" onclick="document.location='#timer-36'" id="navegar-${i + 1}">Escritos</button>
+	<button class="timerButton" style="width:200px ;  font-size: 26px; " onclick="newTimer(prompt('¿Cu&aacute;ntos segundos?'))">Nuevo crono</button>	
+	<button class="timerButton" style="width:200px ;  font-size: 26px; " onclick="document.location='#timer-45'" id="navegar-${i + 1}">Mis cronos</button>
+	<button class="timerButton" id="cambio" style="width:250px ;  font-size: 26px; " onclick="cambiar()">Ir a interacci&oacute;n larga</button>
   </div>
   <div id="timerContainer"></div>
   <br>
 <p align="center">Desarrollado por <a href="mailto:antoniojjm@educastur.org">antoniojjm@educastur.org</a> a partir de <a href="https://github.com/dejvoss/js-multiple-timer" "target="_blank">JS Multiple Timer by DeOS</a> y <a href="https://freesound.org/people/BarkersPinhead/sounds/274806/" "target="_blank">Alarm Timer Watch coundown by BankersPinhead</a> (CC Attrib. 4.0).</p>
 <p align="center">Puedes ajustar el tamaño progresivamente con tu navegador (Control + o bien Control -). Versi&oacute;n en vivo en <a href="https://ajimenezmunoz.github.io/CerCronos/">https://ajimenezmunoz.github.io/CerCronos/</a></p>
 <p align="center">Puedes descargar <a href=".\CerCronos.zip">la &uacute;ltima versi&oacute;n de esta página</a> para usarla sin conexión. Deber&aacute;s descomprimir el archivo zip a una carpeta y abrir index.html con cualquier navegador.</p>
-<br><br></body>
+<br><br><br><!-- ==== Ventana modal de tabla ==== -->
+<div id="tableModal" class="modal">
+  <div class="modal-content">
+    <span class="closeBtn" onclick="closeTable()">×</span>
+    <div id="tableContainer"></div>
+  </div>
+</div></body>
 </html>
