@@ -147,6 +147,21 @@ table td {
   border: 1px solid #444;
   padding: 10px;
 }
+
+.one{
+    color:red;
+    position:absolute;
+    left:0;
+    top:0;
+    z-index:2;
+}
+.two{
+    color:blue;
+    position:absolute;
+    left:0;
+    top:0;
+    z-index:1;
+}
   
   </style>
   <script type="text/javascript" defer>
@@ -420,17 +435,19 @@ if (inter == "corta" || inter == null || inter == undefined) {
   <h1>Cron&oacute;metros certificaci&oacute;n idiomas<a id="arriba"></a></h1>
   <h2><b>Convocatoria Asturias 2026 (pendiente gu&iacute;a del aspirante)</b></h2>
   <div id="controls">
-    <h2>Enlaces</h2>
-    <button class="timerButtonSmall" style="background-color: #BCD5ED ;" onclick="document.location='#arriba'" id="navegar-${i + 1}">A2</button>
+    <h3 style="font-size: 28px; ">Enlaces</h3>
+	<button class="timerButtonSmall" style="background-color: #BCD5ED ;" onclick="document.location='#arriba'" id="navegar-${i + 1}">A2</button>
 	<button class="timerButtonSmall" style="background-color: #F7C9AC ;" onclick="document.location='#B1'" id="navegar-${i + 1}">B1</button>
 	<button class="timerButtonSmall" style="background-color: #C5DFB3 ;" onclick="document.location='#B2'" id="navegar-${i + 1}">B2</button>
 	<button class="timerButtonSmall" style="background-color: #CEC3DB ;" onclick="document.location='#C1'" id="navegar-${i + 1}">C1</button>
-	<button class="timerButtonSmall" style="background-color: #DAEEF3 ;" onclick="document.location='#C2'" id="navegar-${i + 1}">C2</button><br>
-    <button class="timerButton" style="width:200px ;" onclick="document.location='#timer-36'" id="navegar-${i + 1}">Escritos</button>
-	<button class="timerButton" style="width:200px ;  font-size: 26px; " onclick="newTimer(prompt('¿Cu&aacute;ntos segundos?'))">Nuevo crono</button>	
-	<button class="timerButton" style="width:200px ;  font-size: 26px; " onclick="document.location='#timer-45'" id="navegar-${i + 1}">Mis cronos</button>
-	<button class="timerButton" id="cambio" style="width:250px ;  font-size: 26px; " onclick="cambiar()">Ir a interacci&oacute;n larga</button>
-  </div>
+	<button class="timerButtonSmall" style="background-color: #DAEEF3 ;" onclick="document.location='#C2'" id="navegar-${i + 1}">C2</button>
+	</div>
+	<div id="controls2">
+	<button class="timerButton" style="width:200px ;  font-size: 26px; " onclick="document.location='#timer-36'" id="navegar-${i + 1}">Escritos</button>
+	<button class="timerButton" style="width:200px ; font-size: 26px; " onclick="newTimer(prompt('¿Cu&aacute;ntos segundos?'))">Nuevo crono</button>	
+	<button class="timerButton" style="width:200px ; font-size: 26px; " onclick="document.location='#timer-45'" id="navegar-${i + 1}">Mis cronos</button>
+	<button class="timerButton" id="cambio" style="width:350px ; font-size: 26px; " onclick="cambiar()">Ir a interacci&oacute;n larga</button>
+  </div><br>
   <div id="timerContainer"></div>
   <br>
 <p align="center">Desarrollado por <a href="mailto:antoniojjm@educastur.org">antoniojjm@educastur.org</a> a partir de <a href="https://github.com/dejvoss/js-multiple-timer" "target="_blank">JS Multiple Timer by DeOS</a> y <a href="https://freesound.org/people/BarkersPinhead/sounds/274806/" "target="_blank">Alarm Timer Watch coundown by BankersPinhead</a> (CC Attrib. 4.0).</p>
