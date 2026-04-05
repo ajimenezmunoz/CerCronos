@@ -1,9 +1,9 @@
 Estos son cronómetros para usar en Certificación de Idiomas de Asturias.
 
-Puede descargarse una copia de https://ajimenezmunoz.github.io/CerCronos/CerCronos.zip
+Versión en vivo en https://eoicronos.netlify.app/
 
-y usarla en local tras descomprimirla,
+Puede descargarse desde la propia página.
 
-o en vivo a través de https://ajimenezmunoz.github.io/CerCronos/
+Ya NO necesita otros archivos adicionales (audio, imágenes, zip).
 
 Sugerencias y fallos a antoniojjm@educastur.org
